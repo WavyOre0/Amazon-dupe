@@ -46,3 +46,41 @@ export function removeFromCart(productId) {
   cart = newCart;
   saveToStorage();
 }
+export function calculateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  return cartQuantity;
+}
+
+export function updateCartQuantity() {
+  calculateCartQuantity();
+
+  console.log('Cart size:', cartSize);
+  console.log('Looking for element...');
+  const checkoutElement = document.querySelector('[js-checkout-quantity]');
+  console.log('Found element:', checkoutElement);
+  console.log('Element exists?', checkoutElement !== null);
+
+  if (checkoutElement) {
+    checkoutElement.innerHTML = `Cart(${cartSize} items)`;
+    console.log('Updated innerHTML successfully');
+  } else {
+    console.error('Element with [js-checkout-quantity] NOT FOUND');
+    // Let's see what IS on the page
+    console.log('All divs:', document.querySelectorAll('div'));
+  }
+}
+
+export function updateQuantity(productId, newQuantity) {
+  cart.forEach((cartItem) => {
+    if (cartItem.productId === productId 
+      & newQuantity >0 & newQuantity <= 1000) {
+      cartItem.quantity = newQuantity;
+    } else {
+      console.log("invalid number, try again!");
+    }
+    saveToStorage();
+  })
+}
