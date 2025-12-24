@@ -102,6 +102,12 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
       matchingItem = cartItem;
     }
   });
+  if (!matchingItem) {
+    return;
+  }
+  if (deliveryOptionId !== '1' & deliveryOptionId !== '2' &deliveryOptionId !== '3') {
+    return;
+  }
   matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
