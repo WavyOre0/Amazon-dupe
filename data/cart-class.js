@@ -1,15 +1,16 @@
 class Cart {
   cartItems;
 
-  localStorageKey;
+  //# makes properties private like in c++
+  #localStorageKey;
 
   constructor(localStorageKey) { //must be named constructor
-    this.localStorageKey = localStorageKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   }
 
-  loadFromStorage () { //use regular function syntax
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) 
+  #loadFromStorage () { //use regular function syntax
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)) 
 
     if (!this.cartItems) {
       this.cartItems = [{
@@ -25,7 +26,7 @@ class Cart {
   }
 
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
   addtoCart(productId) {
