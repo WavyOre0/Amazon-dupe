@@ -1,6 +1,11 @@
-import {products, Product, Clothing, Appliance} from "../../data/products.js";
+import {products, Product, Clothing, Appliance, loadProducts} from "../../data/products.js";
 
 describe("test suite: products", () => {
+  beforeAll((done) => {
+    loadProducts(() => {
+      done();
+    })
+  })
   it ("testing if products class is correct", () => {
     expect(products.at(0)).toEqual(new Product({id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
