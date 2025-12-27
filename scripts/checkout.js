@@ -5,8 +5,12 @@ import { loadProducts, loadProductsFetch } from '../data/products.js';
 
 
 async function loadPage() { // async makes a function return a promise
-
-  await loadProductsFetch(); //await lets us write asynchronous code like normal code
+  try {
+    await loadProductsFetch();
+  } catch (error) {
+    console.log('Unexpected error. Please try again later.');
+  }
+   //await lets us write asynchronous code like normal code
   renderOrderSummary();
   renderPaymentSummary();
 
