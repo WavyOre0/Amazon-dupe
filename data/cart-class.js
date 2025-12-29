@@ -98,11 +98,16 @@ class Cart {
 
     this.saveToStorage();
   }
+  async loadCartFetch() {
+    const response = await fetch('https://supersimplebackend.dev/cart');
+    const text = await response.text();
+    console.log(text);
+    return text;
+  }
 }
 
 
 export const cart =  new Cart('cart-oop');
-const businessCart = new Cart('cart-business');
 
 
 

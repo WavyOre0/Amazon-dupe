@@ -1,12 +1,13 @@
 import { renderOrderSummary} from './checkout/orderSummary.js';
 
 import { renderPaymentSummary} from './checkout/paymentSummary.js';
-import { loadProducts, loadProductsFetch } from '../data/products.js';
+import { loadProductsFetch } from '../data/products.js';
 
 
 async function loadPage() { // async makes a function return a promise
   try {
     await loadProductsFetch();
+    await cart.loadProductsFetch();
   } catch (error) {
     console.log('Unexpected error. Please try again later.');
   }
