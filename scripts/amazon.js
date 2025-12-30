@@ -11,7 +11,10 @@ function renderProductsGrid() {
 
   if (search) {
     filteredProducts = products.filter((product) => {
-      return product.name.includes(search);
+      if ((product.keywords.includes(search.toLowerCase())) || product.name.toLowerCase().includes(search.toLowerCase())) {
+        return product;
+      }
+      //return product.name.toLowerCase().includes(search.toLowerCase());
     });
   }
 
