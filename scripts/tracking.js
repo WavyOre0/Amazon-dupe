@@ -3,11 +3,6 @@ import {getProduct, loadProductsFetch} from "../data/products.js";
 import {cart} from "../data/cart-class.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
-
-
-
-
-
 async function renderTrackingHTML() {
   await loadProductsFetch();
 

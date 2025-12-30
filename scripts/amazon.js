@@ -5,7 +5,17 @@ loadProducts(renderProductsGrid);
 
 function renderProductsGrid() {
   let productsHTML = '';
-  products.forEach((product) => {
+  const url = new URL(window.location.href);
+  const search = url.searchParams.get('search');
+  let filteredProducts = products;
+
+  if (search) {
+    filteredProducts = products.filter((product) => {
+      return product.name.includes(search);
+    });
+  }
+
+  filteredProducts.forEach((product) => {
     productsHTML += `
     <div class="product-container">
         <div class="product-image-container">
@@ -30,7 +40,8 @@ function renderProductsGrid() {
         </div>
 
         <div class="product-quantity-container">
-          <select class = "js-quantity-selctor-${product.id}">
+          <select id="mySelect" class = "js-quantity-selector"
+          data-product-id="${product.id}">
             <option selected value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -61,9 +72,16 @@ function renderProductsGrid() {
     `;
 
   });
-
+  
   //console.log(productsHTML);
   document.querySelector('.js-products-grid').innerHTML = productsHTML;
+  let newValue = 1;
+  const selection = document.querySelectorAll('#mySelect');
+  selection.forEach((button)=> {
+    button.addEventListener('change',(event) => {
+      newValue = event.target.value;
+    })
+  });
 
 
   function updateCartQuantity() {
@@ -78,9 +96,17 @@ function renderProductsGrid() {
   document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
-      cart.addtoCart(productId);
+      cart.addToCart(productId, newValue);
       updateCartQuantity();
+      console.log(cart.cartItems);
     });
   });
   updateCartQuantity();
+
+  
+  document.querySelector('.js-search-button').addEventListener('click', () => {
+    const search = document.querySelector('.js-search-bar').value;
+    window.location.href = `Amazon.html?search=${search}`;    
+  });
+
 }

@@ -7,8 +7,9 @@ import { loadProductsFetch } from '../data/products.js';
 async function loadPage() { // async makes a function return a promise
   try {
     await loadProductsFetch();
-    await cart.loadProductsFetch();
+    //await cart.loadProductsFetch();
   } catch (error) {
+    console.log(error);
     console.log('Unexpected error. Please try again later.');
   }
    //await lets us write asynchronous code like normal code

@@ -29,6 +29,25 @@ class Cart {
     localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
+  addToCart(productId, quantity) {
+    let matchingItem;
+    this.cartItems.forEach((cartItem) => {
+      if (productId === cartItem.productId) {
+        matchingItem = cartItem;
+      }
+    });
+
+    if (matchingItem) {
+      matchingItem.quantity += Number(quantity);
+    } else {
+      this.cartItems.push({
+        productId: productId,
+        quantity: Number(quantity),
+        deliveryOptionId: '1'
+      });
+    }
+    this.saveToStorage();
+  }
   addtoCart(productId) {
     let matchingItem;
     this.cartItems.forEach((cartItem) => {
