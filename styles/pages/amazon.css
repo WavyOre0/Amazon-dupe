@@ -64,6 +64,10 @@
     grid-template-columns: 1fr;
   }
 }
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 
 .product-container {
   padding-top: 40px;
@@ -142,6 +146,7 @@
      be invisible. Use JavaScript to change the
      opacity and make it visible. */
   opacity: 0;
+  
 }
 
 .added-to-cart img {
@@ -153,4 +158,9 @@
   width: 100%;
   padding: 8px;
   border-radius: 50px;
+}
+
+.fade-target {
+  animation: fadeOut 0.5s forwards;
+  animation-delay: 0.4s;
 }

@@ -62,7 +62,7 @@ function renderProductsGrid() {
 
         <div class="product-spacer"></div>
 
-        <div class="added-to-cart">
+        <div class="added-to-cart js-added-${product.id}">
           <img src="images/icons/checkmark.png">
           Added
         </div>
@@ -95,13 +95,20 @@ function renderProductsGrid() {
         document.querySelector('.js-cart-quantity').innerHTML = JSON.stringify(cartQuantity);
       }
   };
+  function showAddedToCart(productId) {
+    const container = document.querySelector(`.js-added-${productId}`);
+    container.style.opacity = 1;
+    container.classList.remove('fade-target');
+    void container.offsetWidth;
+    container.classList.add('fade-target');
+  }
 
   document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
       const productId = button.dataset.productId;
       cart.addToCart(productId, newValue);
       updateCartQuantity();
-      console.log(cart.cartItems);
+      showAddedToCart(productId);
     });
   });
   updateCartQuantity();

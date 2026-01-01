@@ -90,11 +90,12 @@ class Cart {
 
   updateQuantity(productId, newQuantity) {
     this.cartItems.forEach((cartItem) => {
-      if (cartItem.productId === productId 
-        & newQuantity >0 & newQuantity <= 1000) {
-        cartItem.quantity = newQuantity;
-      } else {
+      if ((cartItem.productId === productId)) {
+        if ((newQuantity > 0) && (newQuantity <= 1000)) {
+          cartItem.quantity = newQuantity;
+        } else {
         console.log("invalid number, try again!");
+        }
       }
       this.saveToStorage();
     })

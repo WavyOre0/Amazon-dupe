@@ -137,7 +137,6 @@ export function renderOrderSummary () {
 
     link.addEventListener('click', () => {
       handleUpdateQuantity(productId, quantityInput);
-      //console.log(cart);
     });
     quantityInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter') {
@@ -167,7 +166,7 @@ export function renderOrderSummary () {
 
     const quantityLabel = document.querySelector(`.js-quantity-label-${productId}`);
     quantityLabel.innerHTML = newQuantity;
-    console.log(quantityInput);
+    console.log(newQuantity);
 
     
   }
